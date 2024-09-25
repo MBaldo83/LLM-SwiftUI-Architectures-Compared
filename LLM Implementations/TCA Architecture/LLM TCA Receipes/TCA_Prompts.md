@@ -23,6 +23,15 @@ update recipe to have a property thumbSelection that is an optional enum ThumbSe
 ---
 update RecipeListView to use a MultiThumbSelectionView allowing the user to give a recipe a thumbs up or a thumbs down
 ---
+Provide a List of related recipes in the RecipeDetailView, allowing the user to navigate to any related recipe
+---
+update RecipeDetailView to use the latest TCA syntax where store is Bindable and we no longer need WithViewStore
+---
+
+Notes:
+- The different syntax for old vs new versions of TCA caused an issue where the code was written 1st using the old syntax. Without knowledge of the different versions of TCA, you wouldn't know to ask the LLM to update to the new syntax
+- The LLM & Cursor was able to cope with TCA architecture and delivered a working solution
+- If you are using a more complex architecture pattern like TCA (eg. has multiple version, integrates with dependencies, uses non vanilla Swift constructs), and you are unfamiliar with the architecture that you are trying to implement then you shouldn't rely on your LLM assistan to support you on this learning curve. Unless you know the right questions to ask, and are able to provide the right prompt to move the solution towards latest best practice, the result could be out of date, or broken.
 
 
 Tools used:
