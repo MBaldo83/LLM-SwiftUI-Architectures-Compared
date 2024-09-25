@@ -14,6 +14,16 @@ Initializer 'init(path:root:destination:fileID:filePath:line:column:)' requires 
 (debugging)
 Missing argument for parameter 'store' in call
 ---
+update Recipe to have an array of related recipes linked using the recipe id
+---
+(debugging)
+Value of type 'Recipe' has no member 'with'
+---
+update recipe to have a property thumbSelection that is an optional enum ThumbSelection with cases thumbsUp and thumbsDown
+---
+update RecipeListView to use a MultiThumbSelectionView allowing the user to give a recipe a thumbs up or a thumbs down
+---
+
 
 Tools used:
 - Cursor AI Version: 0.41.2

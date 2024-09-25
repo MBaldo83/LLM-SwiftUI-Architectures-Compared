@@ -12,6 +12,7 @@
 		1AA31B7F2CA4161500320F4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AA31B7E2CA4161500320F4E /* Assets.xcassets */; };
 		1AA31B822CA4161500320F4E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AA31B812CA4161500320F4E /* Preview Assets.xcassets */; };
 		1AA31B8A2CA4164C00320F4E /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 1AA31B892CA4164C00320F4E /* ComposableArchitecture */; };
+		1AA31B8C2CA4204000320F4E /* MultiThumbSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA31B8B2CA4204000320F4E /* MultiThumbSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		1AA31B7C2CA4161500320F4E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1AA31B7E2CA4161500320F4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AA31B812CA4161500320F4E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1AA31B8B2CA4204000320F4E /* MultiThumbSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiThumbSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				1AA31B7A2CA4161500320F4E /* LLM_TCA_ReceipesApp.swift */,
 				1AA31B7C2CA4161500320F4E /* ContentView.swift */,
+				1AA31B8B2CA4204000320F4E /* MultiThumbSelectionView.swift */,
 				1AA31B7E2CA4161500320F4E /* Assets.xcassets */,
 				1AA31B802CA4161500320F4E /* Preview Content */,
 			);
@@ -145,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AA31B8C2CA4204000320F4E /* MultiThumbSelectionView.swift in Sources */,
 				1AA31B7D2CA4161500320F4E /* ContentView.swift in Sources */,
 				1AA31B7B2CA4161500320F4E /* LLM_TCA_ReceipesApp.swift in Sources */,
 			);
