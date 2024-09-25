@@ -26,10 +26,11 @@ in RecipeDetailView include MultiThumbSelectionView underneath the recipe name t
 ---
 
 Tools used:
+- Cursor AI Version: 0.41.2
+  - LLM: claude-3.5-sonnet
+- VSCode Version: 1.91.1
 - Xcode 15.4
 - iOS 17.5
-- Cursor AI Version: 0.41.2
-- VSCode Version: 1.91.1
 
 Time taken to complete app: ~50 minutes
 Number of build errors during process: 1
