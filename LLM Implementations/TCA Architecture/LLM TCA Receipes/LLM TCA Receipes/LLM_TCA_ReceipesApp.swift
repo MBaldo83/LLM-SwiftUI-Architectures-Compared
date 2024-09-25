@@ -7,11 +7,4 @@
 
 import SwiftUI
 
-@main
-struct LLM_TCA_ReceipesApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
-}
+

@@ -17,35 +17,35 @@ struct Recipe: Equatable, Identifiable {
 }
 
 // RecipeList feature
-struct RecipeListFeature: Reducer {
+@Reducer
+struct RecipeListFeature {
+    @ObservableState
     struct State: Equatable {
         var recipes: IdentifiedArrayOf<Recipe>
-        @PresentationState var selectedRecipe: RecipeDetailFeature.State?
+        var path = StackState<RecipeDetailFeature.State>()
     }
     
     enum Action: Equatable {
-        case recipeTapped(Recipe)
-        case recipeDetail(PresentationAction<RecipeDetailFeature.Action>)
+        case path(StackAction<RecipeDetailFeature.State, RecipeDetailFeature.Action>)
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case let .recipeTapped(recipe):
-                state.selectedRecipe = RecipeDetailFeature.State(recipe: recipe)
-                return .none
-            case .recipeDetail:
+            case .path:
                 return .none
             }
         }
-        .ifLet(\.$selectedRecipe, action: /Action.recipeDetail) {
+        .forEach(\.path, action: \.path) {
             RecipeDetailFeature()
         }
     }
 }
 
 // RecipeDetail feature
-struct RecipeDetailFeature: Reducer {
+@Reducer
+struct RecipeDetailFeature {
+    @ObservableState
     struct State: Equatable {
         var recipe: Recipe
     }
@@ -67,26 +67,20 @@ struct RecipeDetailFeature: Reducer {
 
 // RecipeList view
 struct RecipeListView: View {
-    let store: StoreOf<RecipeListFeature>
+    @Bindable var store: StoreOf<RecipeListFeature>
     
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
             List {
-                ForEach(viewStore.recipes) { recipe in
-                    Button(action: { viewStore.send(.recipeTapped(recipe)) }) {
+                ForEach(store.recipes) { recipe in
+                    NavigationLink(state: RecipeDetailFeature.State(recipe: recipe)) {
                         Text(recipe.name)
                     }
                 }
             }
             .navigationTitle("Recipes")
-            .sheet(
-                store: self.store.scope(
-                    state: \.$selectedRecipe,
-                    action: { .recipeDetail($0) }
-                )
-            ) { store in
-                RecipeDetailView(store: store)
-            }
+        } destination: { store in
+            RecipeDetailView(store: store)
         }
     }
 }
@@ -117,13 +111,24 @@ struct RecipeDetailView: View {
 }
 
 // Root view
-struct ContentView: View {
-    let store: StoreOf<RecipeListFeature>
-    
-    var body: some View {
-        NavigationView {
+
+@main
+struct RecipesApp: App {
+    let store: StoreOf<RecipeListFeature> = Store(
+        initialState: RecipeListFeature.State(
+            recipes: [
+                Recipe(id: UUID(), name: "Pasta Carbonara", ingredients: ["Spaghetti", "Eggs", "Pancetta", "Parmesan"], instructions: "Cook pasta..."),
+                Recipe(id: UUID(), name: "Chicken Curry", ingredients: ["Chicken", "Curry Powder", "Coconut Milk"], instructions: "Sauté chicken...")
+                // Add more recipes as needed
+            ]
+        )
+    ) {
+        RecipeListFeature()
+    }
+
+    var body: some Scene {
+        WindowGroup {
             RecipeListView(store: store)
         }
     }
 }
-
